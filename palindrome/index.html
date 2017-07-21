@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<title>Angular JS Palindrome Example</title>
+</head>
+
+<body ng-app="palindrome">
+
+  <div class="container" ng-controller="PalindromeController">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="page-header">
+          <h1>Angular JS Palindrome Example</h1>
+        </div>
+
+        <div id="messages" class="alert alert-info" ng-show="message">{{ message }}</div>
+
+        <form name="myForm" ng-submit="processForm()" class="form-inline">
+
+          <div class="form-group col-sm-10">
+            <input type="text" name="word" class="form-control" placeholder="Enter words" required ng-model="word" style="width:100%">
+         </div>
+
+          <!-- SUBMIT BUTTON -->
+          <button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid">
+             Check!
+          </button>
+          <span class="help-block" ng-show="myForm.word.$error.required">Required!</span>
+
+
+
+         </form>
+
+
+  </div>
+  </div>
+
+<script>
+
+  angular.module('palindrome', [])
+  .controller('PalindromeController', function($scope, $http) {
+
+    $scope.processForm = function() {
+
+      $http({
+            method: 'POST',
+            url: 'palindrome.php',
+            data: 'word=' + $scope.word,
+            dataType: 'json',
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        })
+        .then(function successCallback(response) {
+
+              $scope.message = response.data.msg;
+
+          });
+      }
+
+  });
+
+
+
+
+</script>
+</body>
+</html>
