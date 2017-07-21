@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<body ng-app="numberExample">
+
+  <div class="container">
+
+        <div class="page-header">
+          <h1>Angular Prime Number Example</h1>
+        </div>
+
+
+
+  <form name="myForm" ng-controller="ExampleController">
+    <label>Number:
+      <input type="number" name="input" ng-model="primeNumber"
+              required ng-change="testPrime()">
+   </label>
+
+    <div role="alert">
+      <span class="error" ng-show="myForm.input.$error.required">
+        Required!</span>
+      <span class="error" ng-show="myForm.input.$error.number">
+        Not valid number!</span>
+    </div>
+
+    <tt ng-show="myForm.$valid">IS Prime? <strong ng-bind="isPrime"> </strong></tt>
+
+   </form>
+
+</div>
+
+<script>
+  angular.module('numberExample', [])
+    .controller('ExampleController', ['$scope', function($scope) {
+
+        $scope.testPrime = function() {
+          $scope.isPrime = testPrimeNumber($scope.primeNumber);
+        }
+
+    }]);
+
+    function testPrimeNumber (n) {
+      if (n < 2) {
+        return false;
+      } else if(n === 2) {
+        return true;
+      } else {
+        for(var x = 2; x < n; x++) {
+          if(n % x === 0) {
+            return false;
+          }
+        }
+        return true;
+      }
+    }
+</script>
+</body>
+</html>
