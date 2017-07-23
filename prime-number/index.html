@@ -8,40 +8,41 @@
 <body ng-app="numberExample">
 
   <div class="container">
-
+    <div class="col-md-6 col-md-offset-3">
         <div class="page-header">
           <h1>Angular JS Prime Number Example</h1>
         </div>
 
 
 
-  <form name="myForm" ng-controller="ExampleController">
-    <label>Number:
-      <input type="number" name="input" ng-model="primeNumber"
-              required ng-change="testPrime()">
-   </label>
-
-    <div role="alert">
-      <span class="error" ng-show="myForm.input.$error.required">
-        Required!</span>
-      <span class="error" ng-show="myForm.input.$error.number">
-        Not valid number!</span>
+  <form name="myForm" ng-controller="ExampleController" class="form-inline">
+    <div class="form-group" style="width:100%">
+      <label for="input" class="col-sm-2 control-label">Number: </label>
+      <div class="col-sm-10">
+      <input type="number" id="input" class="form-control" name="input" ng-model="primeNumber"
+       required ng-change="testPrime()" style="width:100%">
+    </div>
     </div>
 
-    <tt ng-show="myForm.$valid">IS Prime? <strong ng-bind="isPrime"> </strong></tt>
+     <hr>
+     <div role="alert">
+       <div class="alert alert-danger" ng-show="myForm.input.$error.required">
+         Required!</div>
+       <div class="alert alert-danger" ng-show="myForm.input.$error.number">
+         Not valid number!</div>
+     </div>
+    <div class="alert alert-info" ng-show="myForm.$valid">IS Prime? <strong ng-bind="isPrime"> </strong></div>
 
    </form>
-
+   </div>
 </div>
 
 <script>
   angular.module('numberExample', [])
     .controller('ExampleController', ['$scope', function($scope) {
-
         $scope.testPrime = function() {
           $scope.isPrime = testPrimeNumber($scope.primeNumber);
         }
-
     }]);
 
     function testPrimeNumber (n) {
