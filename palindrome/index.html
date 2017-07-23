@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-<link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<title>Angular JS Palindrome Example</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href = "http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <title>Angular JS Palindrome Example</title>
 </head>
 
 <body ng-app="palindrome">
@@ -26,8 +29,8 @@
           <button type="submit" class="btn btn-success" ng-disabled="myForm.$invalid">
              Check!
           </button>
-          <span class="help-block" ng-show="myForm.word.$error.required">Required!</span>
 
+          <span class="help-block" ng-show="myForm.word.$error.required">Required!</span>
 
 
          </form>
@@ -36,7 +39,7 @@
   </div>
   </div>
 
-<script>
+<script type="text/javascript">
 
   angular.module('palindrome', [])
   .controller('PalindromeController', function($scope, $http) {
@@ -58,9 +61,6 @@
       }
 
   });
-
-
-
 
 </script>
 </body>
